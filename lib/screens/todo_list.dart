@@ -59,8 +59,14 @@ class _ToDoListState extends ConsumerState<ToDoList> {
     List<ToDo> todos = ref.watch(todoListProvider);
     if (filterNotComplete) {
       todos = ref.watch(filerNotCompleteProvider);
+      if(todos.isEmpty){
+        todos = ref.watch(todoListProvider);
+      }
     } else if (filterComplete) {
       todos = ref.watch(filerCompleteProvider);
+      if(todos.isEmpty){
+        todos = ref.watch(todoListProvider);
+      }
     }
 
     Widget activeScreen = Column(
